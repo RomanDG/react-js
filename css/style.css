@@ -1,0 +1,9 @@
+.blog-item{
+	margin: 20px 10px;
+}
+
+.blog-item::after {
+    content:"";
+    display:block;
+    clear:both;
+}
