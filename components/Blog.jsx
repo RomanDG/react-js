@@ -1,14 +1,4 @@
 
-
-//********************************************
-//********************************************
-//
-// Я ТАК И НЕ ПОНЯЛ ПОЧЕМУ КОГДА Я ИСПОЛЬЗУЮ "PropTypes" МНЕ ВЫДАЕТ ОШИБКУ - ReferenceError: PropTypes is not defined
-// БЕЗ ПРОВЕРКИ  - "PropTypes" ВСЕ РАБОТАЕТ ОТЛИЧНО, ПРОШУ ПОМОЩи :)
-//
-//********************************************
-//********************************************
-
 let records = [
   {
     img:  'http://placehold.it/200x100',
@@ -126,39 +116,39 @@ class BlogList extends React.Component {
   }
 }
 
-// ЕСЛИ РАСКОМЕНТИРОВАТЬ ТО РАБОТАТЬ НЕ БУДЕТ И БУДЕТ ОШИБКА :(
-//
-// Image.defaultProps = {
-//   img: 'http://placehold.it/200x100'
-// };
-
-// Image.propTypes = {
-//   img: PropTypes.string
-// };
 
 
+ Image.defaultProps = {
+   img: 'http://placehold.it/200x100'
+ };
 
-// TextBox.defaultProps = {
-//   text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum esse eveniet quae incidunt labore eaque delectus, nisi, ad, voluptatem veritatis dicta ipsum molestias iusto commodi nobis vitae deleniti perspiciatis cum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia quos, sit vel voluptates, velit similique explicabo error laboriosam architecto fugiat odio iusto temporibus possimus cupiditate. Excepturi officiis, assumenda dolorum natus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. In nulla tenetur, repudiandae nam fuga, suscipit magnam a est consectetur recusandae? Ratione fuga quae at sapiente magni laudantium optio dolores dolorem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem provident earum sunt aliquam iusto laboriosam voluptatum tempora magni, commodi consequuntur, reprehenderit laborum, doloribus possimus enim amet. Ab, dolorem doloremque consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quibusdam nobis quam quia, ab quaerat harum accusamus qui quis nostrum nesciunt, saepe dignissimos. Perspiciatis eum ut incidunt ipsam dolore magnam!'  
-// };
-
-// TextBox.propTypes = {
-//   text: PropTypes.string
-// };
+ Image.propTypes = {
+   img: React.PropTypes.string
+ };
 
 
 
-// BlogItem.propTypes = {
-//   img: PropTypes.string,
-//   text: PropTypes.string,
-//   metaData: PropTypes.object
-// }
+TextBox.defaultProps = {
+  text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum esse eveniet quae incidunt labore eaque delectus, nisi, ad, voluptatem veritatis dicta ipsum molestias iusto commodi nobis vitae deleniti perspiciatis cum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia quos, sit vel voluptates, velit similique explicabo error laboriosam architecto fugiat odio iusto temporibus possimus cupiditate. Excepturi officiis, assumenda dolorum natus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. In nulla tenetur, repudiandae nam fuga, suscipit magnam a est consectetur recusandae? Ratione fuga quae at sapiente magni laudantium optio dolores dolorem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem provident earum sunt aliquam iusto laboriosam voluptatum tempora magni, commodi consequuntur, reprehenderit laborum, doloribus possimus enim amet. Ab, dolorem doloremque consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quibusdam nobis quam quia, ab quaerat harum accusamus qui quis nostrum nesciunt, saepe dignissimos. Perspiciatis eum ut incidunt ipsam dolore magnam!'  
+};
+
+TextBox.propTypes = {
+  text: React.PropTypes.string
+};
 
 
 
-// BlogList.propTypes = {
-//   // тут я так и не понял как задать проверку, поскольку нет имени свойства
-// };
+BlogItem.propTypes = {
+  img: React.PropTypes.string,
+  text: React.PropTypes.string,
+  metaData: React.PropTypes.object
+}
+
+
+
+BlogList.propTypes = {
+  // тут я так и не понял как задать проверку, поскольку нет имени свойства
+};
 
 
 ReactDOM.render(
