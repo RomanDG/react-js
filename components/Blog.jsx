@@ -124,18 +124,46 @@ class BlogList extends React.Component {
 class PieChart extends React.Component {
   constructor(props){
     super(props);  
-    
-    this.chart = null;
+
+    this.ttl = this.props.titles;
+    this.ids = this.props.ids;
+    this.chart;
+
+    this.state = {
+      data: []
+    }
+
+    for(let id in this.ttl){
+      const value = this.state.data;
+      value.push([this.ttl[id], this.ids[id]]);
+      this.setState({data: value})
+    }
+
+  }
+
+  componentWillReceiveProps(){
+
+    for(let id in this.state.data){
+      const value = this.state.data;
+      value.shift();
+      value.push([this.ttl[id], this.ids[id]]);
+      this.setState({data: value})
+    }
+
+    this.chart.load({
+      columns: this.state.data
+    })
+  }
+
+  componentWillUnmount(){
+    this.chart.destroy();
   }
 
   componentDidMount(){
     this.chart = c3.generate({
       bindto: ReactDOM.findDOMNode(this.refs.chart),
       data: {
-        columns: [
-            ['data1', 1],
-            ['data2', 2]
-        ]
+        columns: this.state.data
       },
       type: 'pie'
     })
