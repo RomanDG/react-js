@@ -143,7 +143,7 @@ class PieChart extends React.Component {
 
   componentWillReceiveProps(nextProps){
 
-    for(let id in this.state.data){
+    for(let id in this.ttl){
       const value = this.state.data;
       value.shift();
       value.push([this.ttl[id], this.ids[id]]);
@@ -202,7 +202,7 @@ class BlogPage extends React.Component {
     this.setState({ids: value});
 
     // здесь видно что в стетйте все инкрементируется...
-    console.log('LIKE ' + e.target.id + ': ' + this.state.ids[(e.target.id-1)])
+    console.log('LIKE ' + e.target.id + ': ' + this.state.ids)
   }
 
   render(){
