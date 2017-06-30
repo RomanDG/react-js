@@ -141,7 +141,7 @@ class PieChart extends React.Component {
 
   }
 
-  componentWillReceiveProps(){
+  componentWillReceiveProps(nextProps){
 
     for(let id in this.state.data){
       const value = this.state.data;
@@ -163,9 +163,9 @@ class PieChart extends React.Component {
     this.chart = c3.generate({
       bindto: ReactDOM.findDOMNode(this.refs.chart),
       data: {
-        columns: this.state.data
-      },
-      type: 'pie'
+        columns: this.state.data,
+        type: 'pie'
+      }   
     })
   }
 
