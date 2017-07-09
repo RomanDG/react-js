@@ -10,7 +10,7 @@ const App = () => {
 	console.log(records)
 	return (
 		<Container>
-		<BlogPage records={records} />
+			<BlogPage records={records} />
 		</Container>
 	)
 };

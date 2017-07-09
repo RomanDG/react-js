@@ -4,7 +4,7 @@
   "description": "React JS Blog",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "node ./initializers/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -23,6 +23,10 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
+    "eslint": "^4.2.0",
+    "eslint-plugin-destructuring": "^2.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.1.0",
     "file-loader": "^0.11.2",
     "react-hot-loader": "^3.0.0-beta.7",
     "style-loader": "^0.18.2",
