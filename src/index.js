@@ -12,14 +12,14 @@ const element = document.getElementById('app');
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <App />
+      <Component />
     </AppContainer>,
     element
-  )
-}
+  );
+};
 
-render(App)
+render(App);
 
 if (module.hot) {
-  	module.hot.accept('./App', () => { render(App) })
+  module.hot.accept('./App', () => { render(App); });
 }

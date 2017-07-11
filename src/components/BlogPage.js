@@ -1,43 +1,52 @@
-
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import BlogList from 'components/widgets/blog/BlogList';
 import PieChart from 'components/widgets/blog/PieChart';
 
 
 class BlogPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      ids: [],
-      titles: []
+      data: [],
+    };
 
-    }
+    this.data = [];
+    this.mass = [];
 
+    this.data = this.state.data;
     this.props.records.map((item) => {
-      this.state.ids.push(item.metaData.currentLike);
-      this.state.titles.push(item.title);
-    })
+      this.data.push({label: item.title, value: item.metaData.currentLike});
+    });
+    this.setState({data: this.data});
+    
 
     this.like = this.like.bind(this);
-    
   }
 
-  like(e){
-    const value = this.state.ids;
-    value[e.currentTarget.id-1] += 1;
-    this.setState({ids: value});
+  like(e) {
+    const data = this.state.data;
+    data[e.currentTarget.id - 1].value += 1;
+    this.setState({data});
+    this.mass = data.map((item) => (item.value));
   }
 
-  render(){
+  render() {
     return (
       <div>
-        <BlogList  addLike = {this.like} {...this.props} ids={this.state.ids}/>
-        <PieChart titles={null} ids={null} />
+        <BlogList  addLike = {this.like} {...this.props} ids={this.mass}/>
+        <PieChart data={this.state.data} />
       </div>
-    )   
+    );   
   }
-};
+
+  static get propTypes() {
+    return {
+      records: PropTypes.array,
+      map: PropTypes.func      
+    };
+  }
+}
 
 export default BlogPage;

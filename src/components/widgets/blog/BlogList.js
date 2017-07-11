@@ -1,20 +1,27 @@
-
 import React from 'react';
-
 import BlogItem from './BlogItem';
+import PropTypes from 'prop-types';
+import { Segment } from 'semantic-ui-react';
 
-import { Segment } from 'semantic-ui-react'
 
+const BlogList = ({addLike, records, ids}) => {    
+  const blogItems = records.map((item) => (
+    <Segment key={item.id.toString()}>
+      <BlogItem {...item} addLike = {addLike} ids={ids} />
+    </Segment>
+  ));
 
-class BlogList extends React.Component {
-  render(){
-    const {addLike, records, ids} = this.props;
-    return (     
-      <div>
-        { records.map((item)=>(<Segment><BlogItem {...item} key={item.id} addLike = {addLike} ids={ids} /></Segment>))}
-      </div>
-    )
-  }
-}
+  return (
+    <div>
+      {blogItems}
+    </div>
+  );
+};
+
+BlogList.propTypes = {
+  addLike: PropTypes.func,
+  records: PropTypes.array,
+  ids: PropTypes.array
+};
 
 export default BlogList;

@@ -1,16 +1,14 @@
-
 import React from 'react';
+import PropTypes from 'prop-types';
 
+const TextBox = ({text}) => (
+  <span>
+    {text}
+  </span>
+);
 
-class TextBox extends React.Component {
-  render(){
-    const {text} = this.props;
-    return (
-      <span>
-        {text}
-      </span>
-    );
-  }
+TextBox.propTypes = {
+  text: PropTypes.string
 };
 
 export default TextBox;

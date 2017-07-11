@@ -23,11 +23,7 @@ module.exports = {
     "destructuring"
   ],
   "rules": {
-    "indent": [
-      "error",
-      2,
-      { "SwitchCase": 1 }
-    ],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "linebreak-style": [
       "error",
       "unix"
@@ -49,7 +45,7 @@ module.exports = {
     "camelcase": 1,
     "import/max-dependencies": ["warn", {"max": 10}],
     "keyword-spacing": 1,
-    "max-len": ["error", 80, 2],
+    "max-len": ["error", 3000, 2],
     "newline-per-chained-call": 1,
     "no-negated-condition": 1,
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
@@ -65,7 +61,7 @@ module.exports = {
     "space-infix-ops": 1,
     "space-in-parens": ["warn", "never"],
     "template-curly-spacing": 1,
-    "no-tabs": 2,
+    "no-tabs": 0,
     // React
     "react/prefer-es6-class": 1,
     "react/prefer-stateless-function": 1,
