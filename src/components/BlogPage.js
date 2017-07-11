@@ -14,15 +14,17 @@ class BlogPage extends React.Component {
 
     this.data = [];
     this.mass = [];
+    
+    this.like = this.like.bind(this);
+  }
 
+  componentDidMount(){
     this.data = this.state.data;
     this.props.records.map((item) => {
       this.data.push({label: item.title, value: item.metaData.currentLike});
+      this.mass.push(item.metaData.currentLike);
     });
     this.setState({data: this.data});
-    
-
-    this.like = this.like.bind(this);
   }
 
   like(e) {
