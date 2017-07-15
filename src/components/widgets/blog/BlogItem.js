@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 import Image from 'components/widgets/blog/elements/Image';
 import TextBox from 'components/widgets/blog/elements/TextBox';
 import LikeBtn from 'components/widgets/blog/elements/LikeBtn';
+import {Icon} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 const BlogItem = ({img, text, metaData, addLike, id, title, ids}) => (
+
   <div>
     <div>
-      <h4>{title}</h4>
+      <Link to={{pathname: `/post/${id}`}} ><h3>{title}</h3></Link>
     </div>
     <Image {...img} />
     <TextBox text={text} />
     <div>
-          Дата создания: {metaData.createDate} / Дата обновления: {metaData.updateDate} / Автор: {metaData.author} <LikeBtn addLike = {addLike} id={id} ids={ids} />   
+      <Icon name='outline calendar' />: {metaData.createDate} / <Icon name='undo' />: {metaData.updateDate} / <Icon name='user' />: {metaData.author} <LikeBtn addLike = {addLike} id={id} ids={ids} />   
     </div>
   </div>
 );

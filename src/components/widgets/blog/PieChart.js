@@ -3,24 +3,23 @@ import rd3 from 'react-d3';
 import PropTypes from 'prop-types';
 const PChart = rd3.PieChart;
 
-import { Segment } from 'semantic-ui-react';
-
-const PieChart = ({data}) => (
-  <Segment>
-    <PChart 
-      data={data}
-      width={600}
-      height={400}
-      radius={100}
-      innerRadius={20}
-      sectorBorderColor="white"
-      title="Статистика количества лайков:"
-    />
-  </Segment>
+const PieChart = ({data, w, h, r}) => (
+  <PChart 
+    data={data}
+    width={w}
+    height={h}
+    radius={r}
+    innerRadius={0}
+    sectorBorderColor="white"
+    title="Статистика количества лайков:"
+  />
 );
 
 PieChart.propTypes = {
   data: PropTypes.array,
+  w: PropTypes.number,
+  h: PropTypes.number,
+  r: PropTypes.number
 };
 
 export default PieChart;

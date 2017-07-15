@@ -1,24 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Feed, Icon } from 'semantic-ui-react';
 
 
 const LikeBtn = ({addLike, id, ids}) => (
-  <span>
-    <Button
-      content='Like'
-      icon='heart'
-      label={
-        { 
-          as: 'a', 
-          basic: true, 
-          content: ids[id - 1]
-        }
-      }
-      labelPosition='right'
-      onClick={addLike} 
-      id={id} />
-  </span> 
+  
+  <Feed onClick={addLike} id={id}>
+    <Feed.Event>
+      <Feed.Content>
+        <Feed.Meta>
+          <Feed.Like>
+            <Icon name='like' />
+            {ids[id - 1]} Likes
+          </Feed.Like>
+        </Feed.Meta>
+      </Feed.Content>
+    </Feed.Event>
+  </Feed>
+  
 );
 
 LikeBtn.propTypes = {
