@@ -3,23 +3,22 @@ import rd3 from 'react-d3';
 import PropTypes from 'prop-types';
 const PChart = rd3.PieChart;
 
-const PieChart = ({data, w, h, r}) => (
+const PieChart = ({data, size}) => (
   <PChart 
     data={data}
-    width={w}
-    height={h}
-    radius={r}
+    width={size}
+    height={size}
+    radius={(size / 5)}
     innerRadius={0}
     sectorBorderColor="white"
     title="Статистика количества лайков:"
   />
 );
 
+
 PieChart.propTypes = {
   data: PropTypes.array,
-  w: PropTypes.number,
-  h: PropTypes.number,
-  r: PropTypes.number
+  size: PropTypes.number
 };
 
 export default PieChart;

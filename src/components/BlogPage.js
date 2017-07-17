@@ -13,19 +13,16 @@ class BlogPage extends React.Component {
 
     this.state = {
       data: [],
-      w: null,
-      h: null,
-      r: null,
-      records: [],
+      size: null,
       posts: []
     };
 
     this.data = [];
     this.mass = [];
-    this.posts = [];
     
     this.like = this.like.bind(this);
     this.search = this.search.bind(this);
+    this.resize = this.resize.bind(this);
   }
 
   fetchPosts() {
@@ -48,44 +45,39 @@ class BlogPage extends React.Component {
         this.mass.push(item.metaData.currentLike);
       });
       this.setState({data: this.data});
-      //const size = this.refs.piechart.offsetWidth;
       
-      this.setState({w: this.refs.piechart.offsetWidth});
-      this.setState({h: this.refs.piechart.offsetWidth});
-      this.setState({r: this.refs.piechart.offsetWidth / 5}); 
-
-      window.onresize = () => {
-        this.setState({w: this.refs.piechart.offsetWidth});
-        this.setState({h: this.refs.piechart.offsetWidth});
-        this.setState({r: this.refs.piechart.offsetWidth / 5}); 
-      };
 
       if (this.props.idp) {
-        const post = this.state.posts.filter((item) => (item.id == this.props.idp));
-        this.setState({records: post});
-      } else {
-        this.setState({records: this.state.posts});
+        const posts = this.state.posts.filter((item) => (item.id == this.props.idp));
+        this.setState({posts});
       }
     });
   }
 
   componentDidMount() {
     this.fetchPosts();
+    window.onresize = () => (this.setState({size: this.refs.piechart.offsetWidth}));
   }
+
 
   like(e) {
     const data = this.state.data;
     data[e.currentTarget.id - 1].value += 1;
     this.setState({data});
     this.mass = data.map((item) => (item.value));
+    this.resize();
   }
 
+
   search(e) {
-    const records = this.state.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
-    this.setState({records});
-    if (e.currentTarget.value.toString() == '') {
-      this.setState({records: this.state.posts});
-    }
+    if (e.currentTarget.value.toString() != '') {
+      const posts = this.state.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
+      this.setState({posts});
+    }    
+  }
+
+  resize() {
+    this.setState({size: this.refs.piechart.offsetWidth});
   }
 
   render() {
@@ -93,7 +85,7 @@ class BlogPage extends React.Component {
       <Grid.Row>
         <Grid.Column widescreen={11}>
           <Segment>
-            <BlogList  addLike = {this.like} records = {this.state.records} ids={this.mass}/>
+            <BlogList  addLike = {this.like} posts = {this.state.posts} ids={this.mass}/>
           </Segment>
         </Grid.Column>
         <Grid.Column widescreen={5}>
@@ -102,7 +94,7 @@ class BlogPage extends React.Component {
           </Segment>
           <Segment>
             <div ref='piechart'>
-              <PieChart data={this.state.data} w={this.state.w} h={this.state.h} r={this.state.r}/>
+              <PieChart data={this.state.data} size={this.state.size} />
             </div>
           </Segment>          
         </Grid.Column>
@@ -112,7 +104,6 @@ class BlogPage extends React.Component {
 
   static get propTypes() {
     return {
-      records: PropTypes.array,
       map: PropTypes.func,
       idp: PropTypes.number
     };

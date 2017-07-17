@@ -5,13 +5,14 @@ import TextBox from 'components/widgets/blog/elements/TextBox';
 import LikeBtn from 'components/widgets/blog/elements/LikeBtn';
 import {Icon} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import PostPath from 'components/helpers/PostPath';
 
 
 const BlogItem = ({img, text, metaData, addLike, id, title, ids}) => (
 
   <div>
     <div>
-      <Link to={{pathname: `/post/${id}`}} ><h3>{title}</h3></Link>
+      <Link to={{pathname: PostPath(`${id}`)}} ><h3>{title}</h3></Link>
     </div>
     <Image {...img} />
     <TextBox text={text} />
