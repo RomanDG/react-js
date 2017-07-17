@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
 
 
-const BlogList = ({addLike, posts, ids}) => {   
-  const blogItems = posts.map((item) => (
+const BlogList = ({addLike, records, ids}) => {   
+  const blogItems = records.map((item) => (
     <Item key={item.id.toString()}>
       <BlogItem {...item} addLike = {addLike} ids={ids} />
     </Item>
@@ -20,7 +20,7 @@ const BlogList = ({addLike, posts, ids}) => {
 
 BlogList.propTypes = {
   addLike: PropTypes.func,
-  posts: PropTypes.array,
+  records: PropTypes.array,
   ids: PropTypes.array
 };
 

@@ -14,7 +14,8 @@ class BlogPage extends React.Component {
     this.state = {
       data: [],
       size: null,
-      posts: []
+      posts: [],
+      records: []
     };
 
     this.data = [];
@@ -48,8 +49,10 @@ class BlogPage extends React.Component {
       
 
       if (this.props.idp) {
-        const posts = this.state.posts.filter((item) => (item.id == this.props.idp));
-        this.setState({posts});
+        const post = this.state.posts.filter((item) => (item.id == this.props.idp));
+        this.setState({records: post});
+      } else {
+        this.setState({records: this.state.posts});
       }
     });
   }
@@ -71,9 +74,11 @@ class BlogPage extends React.Component {
 
   search(e) {
     if (e.currentTarget.value.toString() != '') {
-      const posts = this.state.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
-      this.setState({posts});
-    }    
+      const post = this.state.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
+      this.setState({records: post});
+    } else {
+      this.setState({records: this.state.posts});
+    }
   }
 
   resize() {
@@ -85,7 +90,7 @@ class BlogPage extends React.Component {
       <Grid.Row>
         <Grid.Column widescreen={11}>
           <Segment>
-            <BlogList  addLike = {this.like} posts = {this.state.posts} ids={this.mass}/>
+            <BlogList  addLike = {this.like} records = {this.state.records} ids={this.mass}/>
           </Segment>
         </Grid.Column>
         <Grid.Column widescreen={5}>
