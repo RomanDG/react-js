@@ -4,7 +4,9 @@ import { Segment, Grid } from 'semantic-ui-react';
 import BlogList from 'components/widgets/blog/BlogList';
 import Search from 'components/widgets/blog/Search';
 import PieChart from 'components/widgets/blog/PieChart';
-const request = require('superagent');
+import {connect} from 'react-redux';
+
+import {fetchPosts} from 'actions/Posts';
 
 
 class BlogPage extends React.Component {
@@ -12,64 +14,25 @@ class BlogPage extends React.Component {
     super(props);
 
     this.state = {
-      data: [],
-      posts: []
+      foundPosts: []
     };
 
-    this.data = [];
-    this.mass = [];
-    
-    this.like = this.like.bind(this);
     this.search = this.search.bind(this);
   }
 
-  fetchPosts() {
-    const promise = new Promise((resolve, reject) => {
-      request.get(
-        'http://localhost:3001',
-        {},
-        (err, res) => {
-          err ? reject(err) : resolve(res.body);
-        }
-      );      
-    });
-
-    promise.then((res) => {
-      this.setState({posts: res});
-
-      this.data = this.state.data;
-      this.state.posts.map((item) => {
-        this.data.push({label: item.title, value: item.metaData.currentLike});
-        this.mass.push(item.metaData.currentLike);
-      });
-      this.setState({data: this.data});
-      
-
-      if (this.props.idp) {
-        const posts = this.state.posts.filter((item) => (item.id == this.props.idp));
-        this.setState({posts});
-      }
-    });
-  }
-
   componentDidMount() {
-    this.fetchPosts();
+    if (this.props.router == '/') {
+      this.props.fetchPosts();
+    }
   }
-
-
-  like(e) {
-    const data = this.state.data;
-    data[e.currentTarget.id - 1].value += 1;
-    this.setState({data});
-    this.mass = data.map((item) => (item.value));
-  }
-
 
   search(e) {
     if (e.currentTarget.value.toString() != '') {
-      const posts = this.state.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
-      this.setState({posts});
-    }    
+      const posts = this.props.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
+      this.setState({foundPosts: posts});
+    } else {
+      this.setState({foundPosts: []});
+    }
   }
 
 
@@ -78,7 +41,7 @@ class BlogPage extends React.Component {
       <Grid.Row>
         <Grid.Column widescreen={11}>
           <Segment>
-            <BlogList  addLike = {this.like} posts = {this.state.posts} ids={this.mass}/>
+            <BlogList foundPosts={this.state.foundPosts}/> 
           </Segment>
         </Grid.Column>
         <Grid.Column widescreen={5}>
@@ -86,7 +49,7 @@ class BlogPage extends React.Component {
             <Search goSearch={this.search} />
           </Segment>
           <Segment>
-            <PieChart data={this.state.data} />
+            <PieChart />
           </Segment>          
         </Grid.Column>
       </Grid.Row>
@@ -96,9 +59,21 @@ class BlogPage extends React.Component {
   static get propTypes() {
     return {
       map: PropTypes.func,
-      idp: PropTypes.number
+      idp: PropTypes.number,
+      router: PropTypes.string,
+      posts: PropTypes.array,
+      fetchPosts: PropTypes.func
     };
   }
 }
 
-export default BlogPage;
+const mapStateToProps = (state) => ({
+  posts: state.posts.entries,
+  router: state.router.location.pathname,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPosts: () => dispatch(fetchPosts())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);
