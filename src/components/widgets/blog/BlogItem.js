@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import PostPath from 'components/helpers/PostPath';
 
 
-const BlogItem = ({img, text, metaData, id, title}) => (
+const BlogItem = ({img, text, metaData, id, title, addLike}) => (
 
   <div>
     <div>
@@ -17,7 +17,7 @@ const BlogItem = ({img, text, metaData, id, title}) => (
     <Image {...img} />
     <TextBox text={text} />
     <div>
-      <Icon name='outline calendar' />: {metaData.createDate} / <Icon name='undo' />: {metaData.updateDate} / <Icon name='user' />: {metaData.author} <LikeBtn addLike id={id} />   
+      <Icon name='outline calendar' />: {metaData.createDate} / <Icon name='undo' />: {metaData.updateDate} / <Icon name='user' />: {metaData.author} <LikeBtn addLike={addLike} id={id} />   
     </div>
   </div>
 );
@@ -29,7 +29,6 @@ BlogItem.propTypes = {
   addLike: PropTypes.func,
   id: PropTypes.number,
   title: PropTypes.string,
-  ids: PropTypes.array
 };
 
 export default BlogItem;

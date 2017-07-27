@@ -6,7 +6,7 @@ import Search from 'components/widgets/blog/Search';
 import PieChart from 'components/widgets/blog/PieChart';
 import {connect} from 'react-redux';
 
-import {fetchPosts} from 'actions/Posts';
+import {fetchPosts, addPieChartData} from 'actions/Posts';
 
 
 class BlogPage extends React.Component {
@@ -18,6 +18,7 @@ class BlogPage extends React.Component {
     };
 
     this.search = this.search.bind(this);
+    this.addLike = this.addLike.bind(this);
   }
 
   componentDidMount() {
@@ -28,10 +29,26 @@ class BlogPage extends React.Component {
 
   search(e) {
     if (e.currentTarget.value.toString() != '') {
-      const posts = this.props.posts.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
+      const posts = this.props.PostsData.filter((item) => (item.title.toLowerCase().indexOf(e.currentTarget.value.toString().toLowerCase()) != -1));
       this.setState({foundPosts: posts});
     } else {
       this.setState({foundPosts: []});
+    }
+  }
+
+  addLike(e) {
+    const data = [];
+    const id = e.currentTarget.id;
+    if (this.props.PieChartData.length == 0) {
+      for (const [index, value] of this.props.PostsData.entries()) {
+        data.push({label: value.title, value: value.id == id ? value.metaData.currentLike + 1 : value.metaData.currentLike});
+      }
+      this.props.addPieChartData(data);
+    } else {
+      for (const [index, value] of this.props.PieChartData.entries()) {
+        data.push({label: value.label, value: index == id - 1 ? value.value + 1 : value.value});
+      }
+      this.props.addPieChartData(data);     
     }
   }
 
@@ -41,7 +58,7 @@ class BlogPage extends React.Component {
       <Grid.Row>
         <Grid.Column widescreen={11}>
           <Segment>
-            <BlogList foundPosts={this.state.foundPosts}/> 
+            <BlogList foundPosts={this.state.foundPosts} addLike={this.addLike} /> 
           </Segment>
         </Grid.Column>
         <Grid.Column widescreen={5}>
@@ -59,21 +76,24 @@ class BlogPage extends React.Component {
   static get propTypes() {
     return {
       map: PropTypes.func,
-      idp: PropTypes.number,
       router: PropTypes.string,
-      posts: PropTypes.array,
-      fetchPosts: PropTypes.func
+      PostsData: PropTypes.array,
+      PieChartData: PropTypes.array,
+      fetchPosts: PropTypes.func,
+      addPieChartData: PropTypes.func
     };
   }
 }
 
 const mapStateToProps = (state) => ({
-  posts: state.posts.entries,
+  PostsData: state.posts.PostsData,
+  PieChartData: state.posts.PieChartData,
   router: state.router.location.pathname,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: () => dispatch(fetchPosts())
+  fetchPosts: () => dispatch(fetchPosts()),
+  addPieChartData: (data) => dispatch(addPieChartData(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);

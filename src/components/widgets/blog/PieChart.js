@@ -46,7 +46,7 @@ PieChart.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.piechart.data
+  data: state.posts.PieChartData
 });
 
 export default connect(mapStateToProps)(PieChart);

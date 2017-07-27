@@ -10,3 +10,13 @@ const receivePosts = (response) => ({
 export const fetchPosts = () => dispatch => request.get(`${API_ROOT}/`).end((err, response) => {
   !err && dispatch(receivePosts(response.body));
 });
+
+
+const add = (data) => ({
+  type: types.ADD_PIECHART_DATA,
+  data
+});
+
+export const addPieChartData = (data) => dispatch => {
+  dispatch(add(data));
+};

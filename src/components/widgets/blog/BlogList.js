@@ -7,9 +7,9 @@ import {connect} from 'react-redux';
 
 const BlogList = (props) => {  
   let [blogItems, routeItems, findItems] = [false,false,false];
-  blogItems = props.posts.map((item) => (
+  blogItems = props.PostsData.map((item) => (
     <Item key={item.id.toString()}>
-      <BlogItem {...item} />
+      <BlogItem {...item} addLike = {props.addLike}/>
     </Item>
   ));
 
@@ -18,7 +18,7 @@ const BlogList = (props) => {
   } else if (props.foundPosts.length != 0) {
     findItems = props.foundPosts.map((item) => (
       <Item key={item.id.toString()}>
-        <BlogItem {...item} />
+        <BlogItem {...item} addLike = {props.addLike}/>
       </Item>
     ));
   }
@@ -32,16 +32,18 @@ const BlogList = (props) => {
 
 BlogList.propTypes = {
 
-  posts: PropTypes.array,
+  PostsData: PropTypes.array,
   router: PropTypes.string,
-  foundPosts: PropTypes.array
-
+  foundPosts: PropTypes.array,
+  addLike: PropTypes.func,
+  map: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  posts: state.posts.entries,
+  PostsData: state.posts.PostsData,
   router: state.router.location.pathname,
-  foundPosts: ownProps.foundPosts
+  foundPosts: ownProps.foundPosts,
+  addLike: ownProps.addLike
 });
 
 export default connect(mapStateToProps)(BlogList);
