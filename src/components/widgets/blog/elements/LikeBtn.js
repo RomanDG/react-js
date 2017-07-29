@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Feed, Icon } from 'semantic-ui-react';
 
-import {connect} from 'react-redux';
 
-const LikeBtn = ({id, addLike, PieChartData}) => (
+const LikeBtn = ({id, addLike, qty}) => (
   <div>
     <Feed onClick={addLike} id={id}>
       <Feed.Event>
@@ -12,7 +11,7 @@ const LikeBtn = ({id, addLike, PieChartData}) => (
           <Feed.Meta>
             <Feed.Like>
               <Icon name='like' />
-              {PieChartData.length != 0 ? PieChartData[id - 1].value : 0} Likes
+              {qty} Likes 
             </Feed.Like>
           </Feed.Meta>
         </Feed.Content>
@@ -23,14 +22,8 @@ const LikeBtn = ({id, addLike, PieChartData}) => (
 
 LikeBtn.propTypes = {
   id: PropTypes.number,
-  PieChartData: PropTypes.array,
+  qty: PropTypes.number,
   addLike: PropTypes.func,
 };
 
-
-const mapStateToProps = (state, ownProps) => ({
-  PieChartData: state.posts.PieChartData,
-  id: ownProps.id
-});
-
-export default connect(mapStateToProps)(LikeBtn);
+export default LikeBtn;

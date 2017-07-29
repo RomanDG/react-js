@@ -10,10 +10,10 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 const App = () => (
   <Provider store={store}>
     <Router history={history}>
-      <div>
-        <Route exact path='/' render={() => (<MainLayout><BlogPage /></MainLayout>)} />
-        <Route path={PostPath()} render={() => (<MainLayout><BlogPage /></MainLayout>)} />
-      </div>
+      <MainLayout> 
+        <Route exact path='/' component={BlogPage} />
+        <Route path={PostPath()}  component={BlogPage} />
+      </MainLayout>
     </Router>
   </Provider>
 );

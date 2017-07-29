@@ -3,14 +3,13 @@ import rd3 from 'react-d3';
 import PropTypes from 'prop-types';
 const PChart = rd3.PieChart;
 
-import {connect} from 'react-redux';
 
 class PieChart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      size: null
+      size: null,
     };
   }
 
@@ -40,13 +39,9 @@ class PieChart extends React.Component {
   }
 }
 
+export default PieChart;
+
 
 PieChart.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
 };
-
-const mapStateToProps = (state) => ({
-  data: state.posts.PieChartData
-});
-
-export default connect(mapStateToProps)(PieChart);
