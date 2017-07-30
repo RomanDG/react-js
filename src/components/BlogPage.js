@@ -1,6 +1,7 @@
 import React from 'react';
 import { Segment, Grid } from 'semantic-ui-react';
-import Posts from 'components/widgets/blog/Posts';
+//import Posts from 'components/widgets/blog/Posts';
+import PostsContainer from 'containers/PostsContainer';
 import Search from 'components/widgets/blog/Search';
 import PieChartContainer from 'containers/PieChartContainer';
 
@@ -15,7 +16,7 @@ class BlogPage extends React.Component {
       <Grid.Row>
         <Grid.Column widescreen={11}>
           <Segment>
-            <Posts /> 
+            <PostsContainer /> 
           </Segment>
         </Grid.Column>
         <Grid.Column widescreen={5}>

@@ -18,8 +18,7 @@ class Post extends React.Component {
 
   addLike(e) {
     const id = e.currentTarget.id;
-    console.log('ID: ', id);
-    this.props.incrementLikes(id, this.props.posts);   
+    this.props.incrementLikes(id);   
   }
 
   render() {
@@ -47,16 +46,10 @@ Post.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   incrementLikes: PropTypes.func,
-  posts: PropTypes.array
 };
 
-
-const mapStateToProps = (state) => ({
-  posts: state.posts.posts
-});
-
 const mapDispatchToProps = dispatch => ({
-  incrementLikes: (id, posts) => dispatch(incrementLikes(id, posts))
+  incrementLikes: (id) => dispatch(incrementLikes(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(null, mapDispatchToProps)(Post);

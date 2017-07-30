@@ -13,22 +13,21 @@ export const fetchPosts = () => dispatch => request.get(`${API_ROOT}/`).end((err
 });
 
 // инкремент лайков в постах
-const increment = (posts) => ({
+const increment = (id) => ({
   type: types.INCREMENT_LIKES,
-  data: posts
+  id
 });
 
-export const incrementLikes = (id, posts) => dispatch => {
-  posts[id - 1].metaData.currentLike += 1;
-  dispatch(increment(posts));
+export const incrementLikes = (id) => dispatch => {
+  dispatch(increment(id));
 };
 
 // поиск по постам
-const search = (string) => ({
+const search = (query) => ({
   type: types.SEARCH_POSTS,
-  string
+  query
 });
 
-export const searchPosts = (string) => dispatch => {
-  dispatch(search(string));
+export const searchPosts = (query) => dispatch => {
+  dispatch(search(query));
 };

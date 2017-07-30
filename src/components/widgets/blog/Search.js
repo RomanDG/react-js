@@ -15,7 +15,7 @@ class Search extends React.Component {
       const string = e.currentTarget.value.toString();
       this.props.searchPosts(string);
     } else {
-        this.props.searchPosts(null);
+      this.props.searchPosts(null);
     }
   }
 
@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchPosts: (string) => dispatch(searchPosts(string))
+  searchPosts: (query) => dispatch(searchPosts(query))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
