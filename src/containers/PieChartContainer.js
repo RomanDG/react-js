@@ -1,11 +1,5 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import PieChart from 'components/widgets/blog/PieChart';
-
-
-const PieChartContainer = (props) => (
-  <PieChart {...props}/>
-);
 
 const mapStateToProps = (state) => ({
   data: state.posts.posts.map((item) => (
@@ -13,4 +7,4 @@ const mapStateToProps = (state) => ({
   ))
 });
 
-export default connect(mapStateToProps)(PieChartContainer);
+export default connect(mapStateToProps)(PieChart);

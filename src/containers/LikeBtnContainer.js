@@ -1,11 +1,5 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import LikeBtn from 'components/widgets/blog/elements/LikeBtn';
-
-
-const LikeBtnContainer = (props) => (
-  <LikeBtn {...props} />
-);
 
 const mapStateToProps = (state, ownProps) => ({
   id: ownProps.id,
@@ -13,4 +7,4 @@ const mapStateToProps = (state, ownProps) => ({
   addLike: ownProps.addLike
 });
 
-export default connect(mapStateToProps)(LikeBtnContainer);
+export default connect(mapStateToProps)(LikeBtn);
