@@ -10,7 +10,7 @@ class Posts extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.router == '/' && this.props.posts.length == 0) {
+    if (this.props.router == '/') {
       this.props.fetchPosts();
     }
   }

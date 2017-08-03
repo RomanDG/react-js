@@ -18,8 +18,22 @@ const increment = (id) => ({
   id
 });
 
+const sendReqForIncrementLike = (id) => {
+  return new Promise((reject, resolve) => {
+    request.post(`${API_ROOT}/like`).send(`id=${id}`).end((err, response) => {
+      if(err){
+        reject('Error:', err);
+      }else{
+        resolve({code: response, id: id});
+      }
+    })
+  })
+}
+
 export const incrementLikes = (id) => dispatch => {
-  dispatch(increment(id));
+  sendReqForIncrementLike(id).then((data) => {
+    data.code.status == 200 && dispatch(increment(data.id))
+  }).catch((err) => (console.log('Error at incrementLikes', err)));
 };
 
 // поиск по постам
