@@ -1,6 +1,5 @@
 import React from 'react';
 import { Segment, Grid } from 'semantic-ui-react';
-//import Posts from 'components/widgets/blog/Posts';
 import PostsContainer from 'containers/PostsContainer';
 import Search from 'components/widgets/blog/Search';
 import PieChartContainer from 'containers/PieChartContainer';
