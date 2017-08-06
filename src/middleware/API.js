@@ -38,7 +38,6 @@ export default store => next => action => {
         case types.INCREMENT_LIKES: 
             promise.then((response) => {
                 let id = response.id;
-                debugger;
                 return response.code.status == 200 && next(nextAction(action, {id, type: 'INCREMENT_LIKES'}))
             }).catch((err) => (console.log('Error at incrementLikes', err))); break;
         default: break;
