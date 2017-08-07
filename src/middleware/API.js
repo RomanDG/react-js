@@ -20,7 +20,7 @@ const func = ({endpoint, method, query}) => {
             }else if(query == null){
                 resolve(response.body);
             }else{
-                resolve({code: response, id: query.id});
+                resolve(response.text);
             }
         })
     })
@@ -30,18 +30,9 @@ export default store => next => action => {
     
     if(!('API_CALL' in action)) return next(action);
     let promise = func(pick(action['API_CALL'], ['endpoint', 'method', 'query']));
-    switch (action['API_CALL'].type) {
-        case types.FETCH_POSTS_SUCCESS: 
-            promise.then((response) => {
-                return next(nextAction(action, {response, type: 'FETCH_POSTS_SUCCESS'}))
-            }); break;
-        case types.INCREMENT_LIKES: 
-            promise.then((response) => {
-                let id = response.id;
-                return response.code.status == 200 && next(nextAction(action, {id, type: 'INCREMENT_LIKES'}))
-            }).catch((err) => (console.log('Error at incrementLikes', err))); break;
-        default: break;
-    }
+    promise.then((response) => {
+        return next(nextAction(action, {response, type: action['API_CALL'].type}))
+    });
 
     return promise;
 }
