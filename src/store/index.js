@@ -6,8 +6,8 @@ import {connectRouter, routerMiddleware} from 'connected-react-router';
 import ApiCallMid from 'middleware/API';
 import SearchPosts from 'middleware/SearchPosts';
 
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createMemoryHistory';
 export const history = createHistory();
 const middleware = routerMiddleware(history);
 
-export const store = createStore(connectRouter(history)(reducers), composeWithDevTools(applyMiddleware( middleware, ApiCallMid, SearchPosts)));
+export const store = createStore(connectRouter(history)(reducers), composeWithDevTools(applyMiddleware(middleware, ApiCallMid, SearchPosts)));
