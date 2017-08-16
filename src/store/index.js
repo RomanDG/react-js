@@ -10,4 +10,4 @@ import createHistory from 'history/createMemoryHistory';
 export const history = createHistory();
 const middleware = routerMiddleware(history);
 
-export const store = createStore(connectRouter(history)(reducers), composeWithDevTools(applyMiddleware(middleware, ApiCallMid, SearchPosts)));
+export default (initialState) => createStore(connectRouter(history)(reducers), initialState, composeWithDevTools(applyMiddleware(middleware, ApiCallMid, SearchPosts)));

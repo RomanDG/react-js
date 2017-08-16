@@ -1,50 +1,43 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import Provider from 'react-redux';
-import { StaticRouter, Route, matchPath } from 'react-router-dom'
+import {Provider} from 'react-redux';
+import { StaticRouter, Route, matchPath, Switch } from 'react-router-dom'
 import MainLayout from 'components/layouts/MainLayout';
+import prepareData from 'components/helpers/prepareData';
 
-import { store,  history} from 'store';
+import createStore, {history} from 'store';
 
 import {routes} from 'routes';
 //import Helmet from 'react-helmet';
 import request from 'superagent'
 
-const fetchPosts = () => {
-    return new Promise((resolve, reject) =>{
-        request.get('http://localhost:3001/').end((err, data) => {
-            !err ? resolve(data.body) : reject(err)
-        })
-    })
-}
+const store = createStore();
 
 
 export default (req, res) => {
     const state = { posts: [], searchStr: null }
     const promises = []
     routes.some(route => {
-        const match = matchPath(req.url, route)
-        if (match)
-            console.log(match)
-            promises.push(fetchPosts())
+        const match = matchPath(req.url, route.url)
+        if (match != null)
+            promises.push(prepareData(store, route))
         return match
     })
 
     Promise.all(promises).then(data => {
+
         const initialState = JSON.stringify(store.getState());
-        //const initialState = 'aaa'
-        const content = 'bbbb'
-        //  const content = ReactDOMServer.renderToString(
-        //     <div>
-        //     <Provider store={store}>
-        //         <StaticRouter location={req.url} context={{}}>
-        //             <MainLayout>
-        //                 {routes.map((route, index) => (<Route key = {index} {...route}/>))}
-        //             </MainLayout>
-        //         </StaticRouter>
-        //     </Provider>
-        //     </div>
-        // ); 
+         const content = ReactDOMServer.renderToString(
+            <Provider store={store}>
+                <StaticRouter location={req.url} context={{}}>
+                    <MainLayout>
+                        <Switch>
+                        {routes.map((route, index) => (<Route key = {index} {...route}/>))}
+                        </Switch>
+                    </MainLayout>
+                </StaticRouter>
+            </Provider>
+        );      
 
         //const helmet = Helmet.rewind();
 

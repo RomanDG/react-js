@@ -1,0 +1,1 @@
+export default () => __CLIENT__ && !!Window.__INITIAL_STATE__;

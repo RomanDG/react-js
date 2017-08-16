@@ -14,7 +14,8 @@ const render = Component => {
     <AppContainer>
       <Component />
     </AppContainer>,
-    element
+    element,
+    () => ( delete Window.__INITIAL_STATE__ )
   );
 };
 

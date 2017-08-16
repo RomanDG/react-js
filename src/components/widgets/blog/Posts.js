@@ -11,7 +11,7 @@ class Posts extends React.Component {
 
   componentDidMount() {
     if (this.props.router == '/') {
-      this.props.fetchPosts();
+      //this.props.fetchPosts();
     }
   }
 
