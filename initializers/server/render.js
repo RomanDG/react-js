@@ -9,12 +9,11 @@ import createStore, {history} from 'store';
 
 import {routes} from 'routes';
 //import Helmet from 'react-helmet';
-import request from 'superagent'
-
-const store = createStore();
+import request from 'superagent';
 
 
 export default (req, res) => {
+    const store = createStore();
     const state = { posts: [], searchStr: null }
     const promises = []
     routes.some(route => {
