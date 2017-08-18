@@ -6,13 +6,13 @@ import createStore, {history} from 'store';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import {routes} from 'routes';
 
-const store = createStore(Window.__INITIAL_STATE__);
+const store = createStore(window.__INITIAL_STATE__);
 
 const App = () => (
   <Provider store={store}>
     <Router history={history}>
       <MainLayout> 
-        {routes.map(route => (<Route {...route}/>))}
+        {routes.map((route, index) => (<Route key = {index} {...route}/>))}
       </MainLayout>
     </Router>
   </Provider>

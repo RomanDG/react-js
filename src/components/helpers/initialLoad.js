@@ -1,1 +1,1 @@
-export default () => __CLIENT__ && !!Window.__INITIAL_STATE__;
+export default () => __CLIENT__ && !!window.__INITIAL_STATE__;
