@@ -15,7 +15,7 @@ const render = Component => {
       <Component />
     </AppContainer>,
     element,
-    () => ( delete window.__INITIAL_STATE__ )
+    () => (delete window.__INITIAL_STATE__)
   );
 };
 

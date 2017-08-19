@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PostPath from 'components/helpers/PostPath';
 import BlogPage from 'components/BlogPage';
 import initialLoad from 'components/helpers/initialLoad';
@@ -10,12 +10,12 @@ export const routes = [
     path: '/',
     component: BlogPage,
     prepareData: (store) => {
-      if(initialLoad()) return;
-        return store.dispatch(fetchPosts());
+      if (initialLoad()) return;
+      return store.dispatch(fetchPosts());
     }
   },
   { 
     path: PostPath(),
     component: BlogPage,
   }
-]
+];

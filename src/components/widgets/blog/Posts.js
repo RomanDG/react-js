@@ -19,7 +19,7 @@ class Posts extends React.Component {
     const {posts} = this.props;
     return (
       <Item.Group>
-        {posts.filter(item => item != undefined).map((post) => ( <Item key={post.id.toString()}><Post {...post} /></Item> ))}
+        {posts.filter(item => item != undefined).map((post) => (<Item key={post.id.toString()}><Post {...post} /></Item>))}
       </Item.Group>
     );
   }

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import PostPath from 'components/helpers/PostPath';
 import {connect} from 'react-redux';
 import {incrementLikes} from 'actions/Posts';
+import Helmet from 'react-helmet';
 
 class Post extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Post extends React.Component {
     const {img, text, metaData, id, title} = this.props;
     return (
       <div>
+        <Helmet title={title} />
         <div>
           <Link to={{pathname: PostPath(`${id}`)}} ><h3>{title}</h3></Link>
         </div>

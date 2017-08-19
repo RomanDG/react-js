@@ -1,7 +1,8 @@
+import { parse } from 'qs';
 
-export default function(store, route) {
-  const { pathname } = route;
-
+export default function(store, state) {
+  const { location, route } = state;
+  
   if (route.prepareData)
-    return route.prepareData(store, pathname);
+    return route.prepareData(store, location);
 }
