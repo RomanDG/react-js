@@ -5,12 +5,11 @@ import {connect} from 'react-redux';
 import {updatePost} from 'actions/Posts';
 
 const EditPost = ({handleSubmit, updatePost, text, id}) => {
-  console.log(text, id)
   return (
     <Form onSubmit={handleSubmit((id, text)=>updatePost(id, text))}>
       <Field name="text" component={renderField} type="textarea" />
       <Form.Field>
-        <Button type='submit'>edit post</Button>
+        <Button type='submit'>update post</Button>
       </Form.Field> 
     </Form>
   )

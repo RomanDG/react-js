@@ -12,7 +12,7 @@ export const fetchPosts = () => ({
 export const incrementLikes = (id) => ({
   API_CALL: {
     endpoint: '/like',
-    method: 'post',
+    method: 'put',
     query: {id},
     type: types.INCREMENT_LIKES
   }
@@ -21,9 +21,18 @@ export const incrementLikes = (id) => ({
 export const updatePost = (id, data) => ({
   API_CALL: {
     endpoint: '/post',
-    method: 'post',
+    method: 'put',
     query: {id, data},
     type: types.UPDATE_POST
+  }
+});
+
+export const createPost = (name, title, text) => ({
+  API_CALL: {
+    endpoint: '/post',
+    method: 'post',
+    query: {name, title, text},
+    type: types.CREATE_POST
   }
 });
 

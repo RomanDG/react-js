@@ -2,3 +2,4 @@ export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const INCREMENT_LIKES = 'INCREMENT_LIKES';
 export const SEARCH_POSTS = 'SEARCH_POSTS';
 export const UPDATE_POST = 'UPDATE_POST';
+export const CREATE_POST = 'CREATE_POST';

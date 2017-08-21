@@ -46,7 +46,9 @@ class Post extends React.Component {
         <div>
           <Icon name='outline calendar' />: {metaData.createDate} / <Icon name='undo' />: {metaData.updateDate} / <Icon name='user' />: {metaData.author} <LikeBtnContainer addLike={this.addLike} id={id} />   
         </div>
-        <Button onClick={this.toggleEdit}>edit post</Button>
+        <div>
+          {location != `/` && <Button onClick={this.toggleEdit}>edit post</Button>}
+        </div>
         <div>{this.state.editPostTogle && location == `/post/${id}` && <EditPost />}</div>
       </div>      
     );
