@@ -10,6 +10,7 @@ const nextAction = (action, data) => Object.assign({}, action, data);
 
 const func = ({endpoint, method, query}) => new Promise((resolve, reject) => {
   const r = request[method](`${API_ROOT}${endpoint}`);
+  console.log(query)
   if (query != null) r.send(stringify(query));
   r.end((err, response) => {
     if (err) {

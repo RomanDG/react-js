@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router-dom';
-import {Container, Grid, Segment, Header} from 'semantic-ui-react';
+import {Container, Grid, Segment, Header, Menu} from 'semantic-ui-react';
 
 
 const MainLayout = ({children}) => (
@@ -19,9 +19,10 @@ const Logo = () => (
       <Segment>
         <Header>
           <Link to='/'>REACT.JS COURSE - BLOG</Link>
+          <Link to='/contacts'> CONTACTS</Link>
         </Header>
       </Segment>    
-    </Grid.Column>
+    </Grid.Column>  
   </Grid.Row>		
 );
 

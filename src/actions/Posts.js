@@ -18,6 +18,15 @@ export const incrementLikes = (id) => ({
   }
 });
 
+export const updatePost = (id, data) => ({
+  API_CALL: {
+    endpoint: '/post',
+    method: 'post',
+    query: {id, data},
+    type: types.UPDATE_POST
+  }
+});
+
 export const searchPosts = (query) => ({
   SEARCH: {
     query,
