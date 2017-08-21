@@ -27,11 +27,11 @@ export const updatePost = (id, data) => ({
   }
 });
 
-export const createPost = (name, title, text) => ({
+export const createPost = (name, title, text, id) => ({
   API_CALL: {
-    endpoint: '/post',
+    endpoint: '/post/add',
     method: 'post',
-    query: {name, title, text},
+    query: {name, title, text, id},
     type: types.CREATE_POST
   }
 });

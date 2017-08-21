@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import MainLayout from 'components/layouts/MainLayout';
 import { Provider } from 'react-redux';
 import createStore from 'store';
@@ -32,7 +32,9 @@ const App = () => (
   <Provider store={store}>
     <Router history={history}>
       <MainLayout>
+        <Switch>
         {routes.map((route, index) => (<Route key={index} {...route} />))}
+        </Switch>
       </MainLayout>
     </Router>
   </Provider>

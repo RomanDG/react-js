@@ -2,23 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { set } from 'lodash/object';
 import { Header, Form, Input, TextArea, Button, Icon } from 'semantic-ui-react';
+import {createPost} from 'actions/Posts';
+import {connect} from 'react-redux';
 
 
-class Contacts extends React.Component {  
+class NewPost extends React.Component {  
   constructor(props) {
     super(props);
 
     this.state = {
       form: {
         values: {
-          fullName: '',
-          email: '',
-          message: '',
+          name: '',
+          title: '',
+          post: '',
         },
         errors: {
-          fullName: false,
-          email: false,
-          message: false,          
+          name: false,
+          title: false,
+          post: false,          
         }
       }
     }
@@ -28,8 +30,8 @@ class Contacts extends React.Component {
   }
 
   submitHandler(e){
-    e.preventDefault();
-    alert(JSON.stringify(this.state.form.values))
+    const {name, title, post} = this.state.form.values;
+    this.props.createPost(name, title, post, this.props.count)
   }
 
   handleChange(e){
@@ -41,8 +43,8 @@ class Contacts extends React.Component {
 
   isError(event, nameField){
     switch(nameField){
-      case 'fullName':
-        this.clearError('fullName');
+      case 'name':
+        this.clearError('name');
         if(event.target.value.length < 5){
           let form = this.state.form;
           form.errors[nameField] = true;
@@ -59,38 +61,38 @@ class Contacts extends React.Component {
 
 
   render() {
-    const {fullName, email, message} = this.state.form.values;
+    const {name, title, post} = this.state.form.values;
     return (
       <div>
-        <Header size='small'>Contacts:</Header>
+        <Header size='small'>Create a new post:</Header>
         <Form onSubmit={this.submitHandler} >
         <Form.Field error = {!!this.state.form.errors.fullName} >
           <Input 
-            placeholder='Enter your full name' 
-            name='fullName'
-            value={fullName} 
+            placeholder='Your name...' 
+            name='name'
+            value={name} 
             onChange={this.handleChange} 
           />
         </Form.Field>
         <Form.Field>
           <Input 
-            placeholder='Enter your email' 
-            name='email' 
-            value={email} 
+            placeholder='Title...' 
+            name='title' 
+            value={title} 
             onChange={this.handleChange} 
           />
         </Form.Field>
         <Form.Field>
           <TextArea 
             rows = {10}
-            placeholder='Enter your message ...' 
-            name='message' 
-            value={message} 
+            placeholder='Text...' 
+            name='post' 
+            value={post} 
             onChange={this.handleChange} 
           />
         </Form.Field>
         <Form.Field>
-          <Button type='submit'>Submit message</Button>
+          <Button type='submit'>Create post</Button>
         </Form.Field>           
         </Form>
       </div>
@@ -104,4 +106,14 @@ class Contacts extends React.Component {
 //   router: PropTypes.string
 // };
 
-export default Contacts;
+const mapStateToProps = (state) => ({
+  count: state.posts.posts.length+1
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  createPost: (name, title, text, id) => dispatch(createPost(name, title, text, id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+
+//export default NewPost;

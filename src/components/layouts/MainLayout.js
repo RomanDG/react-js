@@ -20,6 +20,7 @@ const Logo = () => (
         <Header>
           <Link to='/'>REACT.JS COURSE - BLOG</Link>
           <Link to='/contacts'> CONTACTS</Link>
+          <Link to='/post/add'> NEW PAGE</Link>
         </Header>
       </Segment>    
     </Grid.Column>  

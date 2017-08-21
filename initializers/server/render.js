@@ -32,7 +32,9 @@ export default (req, res) => {
             <Provider store={store}>
                 <StaticRouter location={req.url} context={{}}>
                     <MainLayout>
+                        <Switch>
                         {routes.map((route, index) => (<Route key={index} {...route} />))}
+                        </Switch>
                     </MainLayout>
                 </StaticRouter>
             </Provider>
