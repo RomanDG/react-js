@@ -9,6 +9,7 @@ import {fetchPosts} from 'actions/Posts';
 export const routes = [
   { 
     exact: true,
+    strict: true,
     path: '/',
     component: BlogPage,
     prepareData: (store) => {
@@ -18,14 +19,17 @@ export const routes = [
   },
   { 
     path: '/contacts',
+    strict: true,
     component: ContactsPage,
   },
   { 
     exact: true,
+    strict: true,
     path: '/post/add',
     component: NewPostPage,
   },  
   { 
+    strict: true,
     path: PostPath(),
     component: BlogPage,
   }

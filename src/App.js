@@ -33,7 +33,7 @@ const App = () => (
     <Router history={history}>
       <MainLayout>
         <Switch>
-        {routes.map((route, index) => (<Route key={index} {...route} />))}
+          {routes.map((route, index) => (<Route key={index} {...route} />))}
         </Switch>
       </MainLayout>
     </Router>

@@ -21,40 +21,40 @@ class Contacts extends React.Component {
           message: false,          
         }
       }
-    }
+    };
 
     this.submitHandler = this.submitHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  submitHandler(e){
+  submitHandler(e) {
     e.preventDefault();
-    alert(JSON.stringify(this.state.form.values))
+    alert(JSON.stringify(this.state.form.values));
   }
 
-  handleChange(e){
+  handleChange(e) {
     this.isError(e, e.target.name);
-    let form = this.state.form;
+    const form = this.state.form;
     form.values[e.target.name] = e.target.value;
-    this.setState({ form })
+    this.setState({ form });
   }
 
-  isError(event, nameField){
-    switch(nameField){
+  isError(event, nameField) {
+    switch (nameField) {
       case 'fullName':
         this.clearError('fullName');
-        if(event.target.value.length < 5){
-          let form = this.state.form;
+        if (event.target.value.length < 5) {
+          const form = this.state.form;
           form.errors[nameField] = true;
-          this.setState({ form })
+          this.setState({ form });
         } break;
     }
   }
 
-  clearError(name){
-    let form = this.state.form;
+  clearError(name) {
+    const form = this.state.form;
     form.errors[name] = false;
-    this.setState({ form })    
+    this.setState({ form });    
   }
 
 
@@ -64,34 +64,34 @@ class Contacts extends React.Component {
       <div>
         <Header size='small'>Contacts:</Header>
         <Form onSubmit={this.submitHandler} >
-        <Form.Field error = {!!this.state.form.errors.fullName} >
-          <Input 
-            placeholder='Enter your full name' 
-            name='fullName'
-            value={fullName} 
-            onChange={this.handleChange} 
-          />
-        </Form.Field>
-        <Form.Field>
-          <Input 
-            placeholder='Enter your email' 
-            name='email' 
-            value={email} 
-            onChange={this.handleChange} 
-          />
-        </Form.Field>
-        <Form.Field>
-          <TextArea 
-            rows = {10}
-            placeholder='Enter your message ...' 
-            name='message' 
-            value={message} 
-            onChange={this.handleChange} 
-          />
-        </Form.Field>
-        <Form.Field>
-          <Button type='submit'>Submit message</Button>
-        </Form.Field>           
+          <Form.Field error = {!!this.state.form.errors.fullName} >
+            <Input 
+              placeholder='Enter your full name' 
+              name='fullName'
+              value={fullName} 
+              onChange={this.handleChange} 
+            />
+          </Form.Field>
+          <Form.Field>
+            <Input 
+              placeholder='Enter your email' 
+              name='email' 
+              value={email} 
+              onChange={this.handleChange} 
+            />
+          </Form.Field>
+          <Form.Field>
+            <TextArea 
+              rows = {10}
+              placeholder='Enter your message ...' 
+              name='message' 
+              value={message} 
+              onChange={this.handleChange} 
+            />
+          </Form.Field>
+          <Form.Field>
+            <Button type='submit'>Submit message</Button>
+          </Form.Field>           
         </Form>
       </div>
     );
