@@ -22,6 +22,7 @@ const renderField = ({input, type, meta: {touched, error, worning}}) => (
   </div>    
 );
 
+// тут я не понял, как можно из form -> values прокинуть в EditBox, как то как двойная работа выглядит.
 export default connect(
   (state) => ({
     initialValues: {
