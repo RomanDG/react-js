@@ -1,4 +1,3 @@
-
 import * as types from 'constants/actionTypes/PostsActionTypes';
 import reducer from 'reducers/Posts';
 import update from 'immutability-helper';
@@ -31,29 +30,29 @@ describe('Posts', () => {
 
     const action = {
       type: types.INCREMENT_LIKES, 
-      response: response
-    }
+      response
+    };
 
-    expect(reducer(state, action)).toEqual(new_state)
+    expect(reducer(state, action)).toEqual(new_state);
   });
 
   it('TEST UPDATE_POST', () => {
     const state = {
-        posts: [
-          {
-            id: 1,
-            text: "HI"
-          },         
-        ]
+      posts: [
+        {
+          id: 1,
+          text: 'HI'
+        },         
+      ]
     };
 
     const new_state = {
-        posts: [
-          {
-            id: 1,
-            text: "HELLO"
-          },
-        ]
+      posts: [
+        {
+          id: 1,
+          text: 'HELLO'
+        },
+      ]
     };
 
     const response = '{"id":"1","text":"HELLO"}';
@@ -63,6 +62,6 @@ describe('Posts', () => {
       response
     };
 
-    expect(reducer(state, action)).toEqual(new_state)
-  })
+    expect(reducer(state, action)).toEqual(new_state);
+  });
 });

@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case types.UPDATE_POST: 
       const response = JSON.parse(action.response); 
       return Object.assign({},state, {posts: state.posts.map((post) => post.id == response.id ? 
-      update(post, { text: { $set: response.text } }) : post)});   
+        update(post, { text: { $set: response.text } }) : post)});   
     case types.SEARCH_POSTS:        return Object.assign({},state, {searchStr: action.query});
 
     default:                        return state;

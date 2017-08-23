@@ -1,6 +1,5 @@
 import request from 'superagent';
 import {API_ROOT} from 'constants/API';
-import * as types from 'constants/actionTypes/PostsActionTypes';
 import { stringify } from 'qs';
 import { pick } from 'lodash/object';
 

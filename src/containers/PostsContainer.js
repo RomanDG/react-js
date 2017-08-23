@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import Posts from 'components/widgets/blog/Posts';
 import {fetchPosts} from 'actions/Posts';
-import { Item } from 'semantic-ui-react';
 
 const allPosts = (posts, pathName, searchString) => {
   if (pathName == '/' && searchString == null) {

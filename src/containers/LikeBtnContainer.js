@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {get} from 'lodash'
+import {get} from 'lodash';
 import LikeBtn from 'components/widgets/blog/elements/LikeBtn';
 
 // В LikeBtnContainer’e нельзя делать выборку из списка постов по индексу в массиве

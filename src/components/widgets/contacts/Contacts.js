@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { set } from 'lodash/object';
-import { Header, Form, Input, TextArea, Button, Icon } from 'semantic-ui-react';
+import { Header, Form, Input, TextArea, Button } from 'semantic-ui-react';
 
 
 class Contacts extends React.Component {  
@@ -97,11 +95,5 @@ class Contacts extends React.Component {
     );
   }
 }
-
-// Posts.propTypes = {
-//   posts: PropTypes.array,
-//   fetchPosts: PropTypes.func,
-//   router: PropTypes.string
-// };
 
 export default Contacts;

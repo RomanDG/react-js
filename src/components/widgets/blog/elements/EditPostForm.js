@@ -1,10 +1,10 @@
 import React from 'react';
-import { Form, TextArea, Button } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import {connect} from 'react-redux';
 import {updatePost} from 'actions/Posts';
 
-const EditPost = ({handleSubmit, updatePost, text, id}) => (
+const EditPost = ({handleSubmit, updatePost}) => (
   <Form onSubmit={handleSubmit((id, text) => updatePost(id, text))}>
     <Field name="text" component={renderField} type="textarea" />
     <Form.Field>
@@ -13,7 +13,7 @@ const EditPost = ({handleSubmit, updatePost, text, id}) => (
   </Form>
 );
 
-const renderField = ({input, type, meta: {touched, error, worning}}) => (
+const renderField = ({input, type, meta: {touched, error}}) => (
   <div className = "ui field">
     <textarea {...input} className="ui input" type={type} />
     {touched && (error && (

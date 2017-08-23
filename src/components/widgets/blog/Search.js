@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Input } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {searchPosts} from 'actions/Posts';

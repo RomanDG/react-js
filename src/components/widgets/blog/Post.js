@@ -29,7 +29,7 @@ class Post extends React.Component {
     this.props.incrementLikes(id);   
   }
 
-  toggleEdit(e) {
+  toggleEdit() {
     this.setState({editPostTogle: !this.state.editPostTogle});
   }
 
