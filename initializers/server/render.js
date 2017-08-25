@@ -10,7 +10,10 @@ import createStore from 'store';
 import { routes } from 'routes';
 import Helmet from 'react-helmet';
 import request from 'superagent';
- const store = createStore();
+
+import webpackAsset from './webpackAsset';
+
+const store = createStore();
 
 export default (req, res) => {
     const promises = []
@@ -39,6 +42,6 @@ export default (req, res) => {
         const helmet = Helmet.rewind();
 
         res.status(200);
-        res.render('index', { initialState, content, helmet });
+        res.render('index', { initialState, content, helmet, webpackAsset });
     })
 }

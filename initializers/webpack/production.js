@@ -51,7 +51,7 @@ export default {
 			__SERVER__: false,
 			__CLIENT__: true,
       __DEVELOPMENT__: false, 
-      'process.ENV.NODE_ENV': 'production'  
+      'process.ENV.NODE_ENV': JSON.stringify('production')
     }),
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ru)$/),
