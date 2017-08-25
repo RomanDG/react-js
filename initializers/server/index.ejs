@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/<%- webpackAsset('vendor', 'css') %>">
   <%- helmet.title.toString() %>
 </head>
 <body>
   <div id="app"><%- content %></div>
+  <script src="/<%- webpackAsset('vendor', 'js') %>"></script>
   <script>window.__INITIAL_STATE__ = <%- initialState %></script>
-  <script src="/assets/bundle.js"></script>
+  <script src="/<%- webpackAsset('bundle', 'js') %>"></script>
 </body>
 </html>

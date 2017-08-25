@@ -10,12 +10,12 @@ import createStore from 'store';
 import { routes } from 'routes';
 import Helmet from 'react-helmet';
 import request from 'superagent';
- const store = createStore();
+
+import webpackAsset from './webpackAsset';
+
+const store = createStore();
 
 export default (req, res) => {
-    console.log(req.url)
-
-   
     const promises = []
     routes.some(route => {
         const match = matchPath(req.url, route.url)
@@ -27,7 +27,6 @@ export default (req, res) => {
     Promise.all(promises).then(data => {
 
         const initialState = JSON.stringify(store.getState());
-        console.log('aaa', store.getState().router.location.pathname)
         const content = ReactDOMServer.renderToString(
             <Provider store={store}>
                 <StaticRouter location={req.url} context={{}}>
@@ -43,6 +42,6 @@ export default (req, res) => {
         const helmet = Helmet.rewind();
 
         res.status(200);
-        res.render('index', { initialState, content, helmet });
+        res.render('index', { initialState, content, helmet, webpackAsset });
     })
 }

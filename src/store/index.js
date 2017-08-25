@@ -8,5 +8,9 @@ import SearchPosts from 'middleware/SearchPosts';
 import {history} from 'components/helpers/history';
 
 const middleware = routerMiddleware(history);
-
-export default (initialState) => createStore(connectRouter(history)(reducers), initialState, composeWithDevTools(applyMiddleware(middleware, ApiCallMid, SearchPosts)));
+//console.log('STORE: ', __DEVELOPMENT__)
+export default (initialState) => createStore(
+  connectRouter(history)(reducers), 
+  initialState,
+  __DEVELOPMENT__ == false ? applyMiddleware(middleware, ApiCallMid, SearchPosts) : 
+  composeWithDevTools(applyMiddleware(middleware, ApiCallMid, SearchPosts)));
