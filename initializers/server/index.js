@@ -9,7 +9,6 @@ require.extensions['.css'] = () => {
 };
 
 
-
 const host = 'localhost';
 const port = 3000;
 
@@ -17,6 +16,9 @@ const express = require('express');
 
 const app = express();
 
+const morgan = require('morgan');
+
+app.use(morgan('combined'));
 app.use(express.static('src/static'));
 app.set('views', __dirname);
 app.set('view engine', 'ejs');
